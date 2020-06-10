@@ -15,11 +15,11 @@ public class card {
 		rank = str.charAt(0);
 	}
 
-	public char suit() {
+	public char getSuit() {
 		return suit;
 	}
 
-	public char rank() {
+	public char getRank() {
 		return rank;
 	}
 }
