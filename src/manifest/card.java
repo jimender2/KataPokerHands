@@ -10,16 +10,46 @@ public class card {
 		this.rank = rank;
 	}
 
-	public card(String str) {
+	card(String str) {
 		suit = str.charAt(1);
 		rank = str.charAt(0);
 	}
 
-	public char getSuit() {
+	char getSuit() {
 		return suit;
 	}
 
-	public char getRank() {
+	char getRank() {
 		return rank;
+	}
+
+	public int getValue() {
+
+		int value = 0;
+
+		switch (this.rank) {
+		case 'J':
+			value = 11;
+			break;
+		case 'Q':
+			value = 12;
+			break;
+		case 'K':
+			value = 13;
+			break;
+		case 'A':
+			value = 14;
+			break;
+		case '1':
+			// Need to catch this case since 1 is not a valid card value
+			value = 10;
+			break;
+		default:
+			value = ((int) rank) - 48;
+			break;
+		}
+
+		return value;
+
 	}
 }
