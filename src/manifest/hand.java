@@ -120,26 +120,16 @@ public class hand {
 		if (h1.twoPair && h2.twoPair) {
 			// Since I do not sort out which one is bigger in the score class
 			// I need to sort it out here.
-			// Move to util class.
-			int h1num = 0;
-			if (h1.twoPairNum >= h1.pairNum) {
-				h1num = h1.twoPairNum;
-			} else {
-				h1num = h1.pairNum;
-			}
+			int h1num = util.maxNumber(h1.pairNum, h2.twoPairNum);
 
-			int h2num = 0;
-			if (h2.twoPairNum >= h2.pairNum) {
-				h2num = h2.twoPairNum;
-			} else {
-				h2num = h2.pairNum;
-			}
+			int h2num = util.maxNumber(h2.pairNum, h2.twoPairNum);
 
 			if (h1num > h2num) {
 				return util.printWinner(this, "a two pair");
 			} else {
 				return util.printWinner(other, "a two pair");
 			} // todo handle if both pairs are the same value
+
 		} else if (h1.twoPair) {
 			return util.printWinner(this, "a two pair");
 		} else if (h2.twoPair) {
