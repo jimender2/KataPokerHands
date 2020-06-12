@@ -49,10 +49,10 @@ public class hand {
 		boolean threeOfAKind = false;
 		boolean fourOfAKind = false;
 
-		int pairNum;
-		int twoPairNum;
-		int threeOfAKindNum;
-		int fourOfAKindNum;
+		int pairNum = 0;
+		int twoPairNum = 0;
+		int threeOfAKindNum = 0;
+		int fourOfAKindNum = 0;
 
 		for (int i : count) {
 			if (i == 2) {
@@ -72,6 +72,74 @@ public class hand {
 			}
 		}
 
+		boolean fullHouse = false;
+		int fullHouseNum;
+		// Now to check if it is Full house
+		if (twoPair && threeOfAKind) {
+			fullHouse = true;
+			fullHouseNum = threeOfAKindNum;
+		}
+
+		// Check for a Flush
+		boolean straight = false;
+		int straightNum = 0;
+		int consecutive = 0;
+		for (int i : count) {
+			if (i == 1) {
+				consecutive = consecutive + 1;
+			} else if (i > 1) {
+				// Does not make sense to keep running through if we already have
+				// consecutive cards since there are multiple cards of this value
+				// in this pile
+				break;
+			} else if (i == 0 && consecutive != 0) {
+				// Does not make sense to keep running through if we already have
+				// consecutive cards since there are no cards in this pile and
+				// we already have consecutive cards
+				break;
+			}
+
+			if (consecutive == 5) {
+				straight = true;
+				straightNum = i;
+				break;
+			}
+		}
+
+		// Flush
+		boolean flush = false;
+		int[] suit = new int[4];
+		for (int i = 0; i < 4; i++) {
+			suit[i] = 0;
+		}
+
+		for (card card : cards) {
+			switch (card.getSuit()) {
+			case 'D':
+				suit[0] = suit[0] + 1;
+				break;
+			case 'H':
+				suit[1] = suit[1] + 1;
+				break;
+			case 'C':
+				suit[2] = suit[2] + 1;
+				break;
+			case 'S':
+				suit[3] = suit[3] + 1;
+				break;
+			}
+		}
+
+		for (int i : suit) {
+			if (i == 5) {
+				flush = true;
+			}
+		}
+
+		boolean straightFlush = false;
+		if (straight && flush) {
+			straightFlush = true;
+		}
 	}
 
 	/**
