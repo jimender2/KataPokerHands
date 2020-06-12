@@ -6,7 +6,7 @@ public class main {
 
 	public static void main(String[] args) {
 
-		System.out.println("Enter into my poker kingdom");
+		System.out.println("Enter your two hands as described in the input:");
 
 		Scanner scan = new Scanner(System.in);
 
@@ -18,13 +18,5 @@ public class main {
 		System.out.println(h1.compareTo(h2));
 
 		scan.close();
-
-//		for (int i = 0; i < 100; i++) {
-//			deck deck = new deck();
-//			h1 = new hand("black", deck.drawCard(), deck.drawCard(), deck.drawCard(), deck.drawCard(), deck.drawCard());
-//			h2 = new hand("white", deck.drawCard(), deck.drawCard(), deck.drawCard(), deck.drawCard(), deck.drawCard());
-//			System.out.println(h1.compareTo(h2));
-//		}
 	}
-
 }
