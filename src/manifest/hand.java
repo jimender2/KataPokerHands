@@ -48,11 +48,15 @@ public class hand {
 		score h1 = new score(this.cards);
 		score h2 = new score(other.cards);
 
+		// Catches any straight flushes that there might be
 		if (h1.straightFlush) {
 			return this.getPlayerName() + " wins. - with straight flush.";
 		} else if (h2.straightFlush) {
 			return other.getPlayerName() + " wins. - with straight flush.";
-		} else if (h1.fourOfAKind && h2.fourOfAKind) {
+		}
+
+		// Handles the four of a kinds
+		if (h1.fourOfAKind && h2.fourOfAKind) {
 			if (h1.fourOfAKindNum > h2.fourOfAKindNum) {
 				return this.getPlayerName() + " wins. - with four of a kind";
 			} else {
@@ -62,7 +66,10 @@ public class hand {
 			return this.getPlayerName() + " wins. - with four of a kind";
 		} else if (h2.fourOfAKind) {
 			return other.getPlayerName() + " wins. - with four of a kind";
-		} else if (h1.fullHouse && h2.fullHouse) {
+		}
+
+		// Handles full houses.
+		if (h1.fullHouse && h2.fullHouse) {
 			if (h1.fullHouseNum > h2.fullHouseNum) {
 				return this.getPlayerName() + " wins. - with a full house";
 			} else {
@@ -72,13 +79,19 @@ public class hand {
 			return this.getPlayerName() + " wins. - with a full house.";
 		} else if (h2.fullHouse) {
 			return other.getPlayerName() + " wins. - with a full house";
-		} else if (h1.flush && h2.flush) {
+		}
+
+		// Catches any flushes that there might be.
+		if (h1.flush && h2.flush) {
 			// todo
 		} else if (h1.flush) {
 			return this.getPlayerName() + " wins. - with a flush";
 		} else if (h2.flush) {
 			return other.getPlayerName() + " wins. - with a flush";
-		} else if (h1.straight && h2.straight) {
+		}
+
+		// Catch the straights
+		if (h1.straight && h2.straight) {
 			if (h1.straightNum > h2.straightNum) {
 				return this.getPlayerName() + " wins. - with a straight";
 			} else {
@@ -88,7 +101,10 @@ public class hand {
 			return this.getPlayerName() + " wins. - with a straight";
 		} else if (h2.straight) {
 			return other.getPlayerName() + " wins. - with a straight";
-		} else if (h1.threeOfAKind && h2.threeOfAKind) {
+		}
+
+		// Three cards are the same
+		if (h1.threeOfAKind && h2.threeOfAKind) {
 			if (h1.threeOfAKindNum > h2.threeOfAKindNum) {
 				return this.getPlayerName() + " wins. - with a three of a kind";
 			} else {
@@ -98,7 +114,13 @@ public class hand {
 			return this.getPlayerName() + " wins. - with a three of a kind";
 		} else if (h2.threeOfAKind) {
 			return other.getPlayerName() + " wins. - with a three of a kind";
-		} else if (h1.twoPair && h2.twoPair) {
+		}
+
+		// A pair of pairs is caught here.
+		if (h1.twoPair && h2.twoPair) {
+			// Since I do not sort out which one is bigger in the score class
+			// I need to sort it out here.
+			// Move to util class.
 			int h1num = 0;
 			if (h1.twoPairNum >= h1.pairNum) {
 				h1num = h1.twoPairNum;
@@ -117,33 +139,39 @@ public class hand {
 				return this.getPlayerName() + " wins. - with a two pair";
 			} else {
 				return other.getPlayerName() + " wins. - with a two pair";
-			}
+			} // todo handle if both pairs are the same value
 		} else if (h1.twoPair) {
 			return this.getPlayerName() + " wins. - with a two pair";
 		} else if (h2.twoPair) {
 			return other.getPlayerName() + " wins. - with a two pair";
-		} else if (h1.pair && h2.pair) {
+		}
+
+		// Single pair. No need to sort it.
+		if (h1.pair && h2.pair) {
 			if (h1.pairNum > h2.pairNum) {
 				return this.getPlayerName() + " wins. - with a pair";
 			} else {
 				return other.getPlayerName() + " wins. - with a two pair";
 			}
+			// todo need to handle if both pairs are the same value
 		} else if (h1.pair) {
 			return this.getPlayerName() + " wins. - with a two pair";
 		} else if (h2.pair) {
 			return other.getPlayerName() + " wins. - with a two pair";
-		} else {
-			for (int i = 0; i < h1.highNum.length; i++) {
-				int len = h1.highNum.length - 1;
-				if (h1.highNum[len - i] > h2.highNum[len - i]) {
-					return this.getPlayerName() + " wins. - with high card: " + card.getName(h1.highNum[len - i]);
-				} else if (h1.highNum[len - i] < h2.highNum[len - i]) {
-					return other.getPlayerName() + " wins. - with high card: " + card.getName(h2.highNum[len - i]);
-				}
-			}
-			return "Tie.";
 		}
 
-		return "";
+		// This section is for the high card selection.
+		int len = h1.highNum.length - 1;
+		for (int i = 0; i < h1.highNum.length; i++) {
+			if (h1.highNum[len - i] > h2.highNum[len - i]) {
+				return this.getPlayerName() + " wins. - with high card: " + card.getName(h1.highNum[len - i]);
+			} else if (h1.highNum[len - i] < h2.highNum[len - i]) {
+				return other.getPlayerName() + " wins. - with high card: " + card.getName(h2.highNum[len - i]);
+			}
+		}
+
+		// If nothing above was triggered, it must be a tie.
+		return "Tie.";
+
 	}
 }
