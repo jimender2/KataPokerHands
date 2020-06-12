@@ -19,6 +19,7 @@ public class score {
 	int fullHouseNum;
 	int straightNum;
 
+	// Keeps the card values from highest to lowest to catch different cases
 	int[] highNum;
 
 	score(ArrayList<card> cards) {
@@ -36,6 +37,7 @@ public class score {
 			count[i] = 0;
 		}
 
+		// Counts the cards in the correct array slot
 		for (card card : cards) {
 			count[card.getValue()]++;
 		}

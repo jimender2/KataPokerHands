@@ -37,13 +37,6 @@ public class hand {
 		return name;
 	}
 
-	void display() {
-		// Change out to use variable to make it faster.
-		for (int i = 0; i < cards.size(); i++) {
-
-		}
-	}
-
 	String compareTo(hand other) {
 		score h1 = new score(this.cards);
 		score h2 = new score(other.cards);
@@ -151,7 +144,6 @@ public class hand {
 		}
 
 		// This section is for the high card selection.
-		int len = h1.highNum.length - 1;
 		for (int i = 0; i < h1.highNum.length; i++) {
 			if (h1.highNum[i] > h2.highNum[i]) {
 				return util.printWinner(this, "high card: " + card.getName(h1.highNum[i]));
