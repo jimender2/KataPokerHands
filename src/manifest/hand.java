@@ -50,70 +50,70 @@ public class hand {
 
 		// Catches any straight flushes that there might be
 		if (h1.straightFlush) {
-			return this.getPlayerName() + " wins. - with straight flush.";
+			return util.printWinner(this, "straight flush");
 		} else if (h2.straightFlush) {
-			return other.getPlayerName() + " wins. - with straight flush.";
+			return util.printWinner(other, "straight flush");
 		}
 
 		// Handles the four of a kinds
 		if (h1.fourOfAKind && h2.fourOfAKind) {
 			if (h1.fourOfAKindNum > h2.fourOfAKindNum) {
-				return this.getPlayerName() + " wins. - with four of a kind";
+				return util.printWinner(this, "four of a kind");
 			} else {
-				return other.getPlayerName() + " wins. - with four of a kind";
+				return util.printWinner(other, "four of a kind");
 			}
 		} else if (h1.fourOfAKind) {
-			return this.getPlayerName() + " wins. - with four of a kind";
+			return util.printWinner(this, "four of a kind");
 		} else if (h2.fourOfAKind) {
-			return other.getPlayerName() + " wins. - with four of a kind";
+			return util.printWinner(other, "four of a kind");
 		}
 
 		// Handles full houses.
 		if (h1.fullHouse && h2.fullHouse) {
 			if (h1.fullHouseNum > h2.fullHouseNum) {
-				return this.getPlayerName() + " wins. - with a full house";
+				return util.printWinner(this, "a full house");
 			} else {
-				return other.getPlayerName() + " wins. - whth a full house";
+				return util.printWinner(other, " wins. - whth a full house");
 			}
 		} else if (h1.fullHouse) {
-			return this.getPlayerName() + " wins. - with a full house.";
+			return util.printWinner(this, "a full house.");
 		} else if (h2.fullHouse) {
-			return other.getPlayerName() + " wins. - with a full house";
+			return util.printWinner(other, "a full house");
 		}
 
 		// Catches any flushes that there might be.
 		if (h1.flush && h2.flush) {
 			// todo
 		} else if (h1.flush) {
-			return this.getPlayerName() + " wins. - with a flush";
+			return util.printWinner(this, "a flush");
 		} else if (h2.flush) {
-			return other.getPlayerName() + " wins. - with a flush";
+			return util.printWinner(other, "a flush");
 		}
 
 		// Catch the straights
 		if (h1.straight && h2.straight) {
 			if (h1.straightNum > h2.straightNum) {
-				return this.getPlayerName() + " wins. - with a straight";
+				return util.printWinner(this, "a straight");
 			} else {
-				return other.getPlayerName() + " wins. - with a straight";
+				return util.printWinner(other, "a straight");
 			}
 		} else if (h1.straight) {
-			return this.getPlayerName() + " wins. - with a straight";
+			return util.printWinner(this, "a straight");
 		} else if (h2.straight) {
-			return other.getPlayerName() + " wins. - with a straight";
+			return util.printWinner(other, "a straight");
 		}
 
 		// Three cards are the same
 		if (h1.threeOfAKind && h2.threeOfAKind) {
 			if (h1.threeOfAKindNum > h2.threeOfAKindNum) {
-				return this.getPlayerName() + " wins. - with a three of a kind";
+				return util.printWinner(this, "a three of a kind");
 			} else {
-				return other.getPlayerName() + " wins. - with a three of a kind";
+				return util.printWinner(other, "a three of a kind");
 			}
 		} else if (h1.threeOfAKind) {
-			return this.getPlayerName() + " wins. - with a three of a kind";
+			return util.printWinner(this, "a three of a kind");
 		} else if (h2.threeOfAKind) {
-			return other.getPlayerName() + " wins. - with a three of a kind";
+			return util.printWinner(other, "a three of a kind");
 		}
 
 		// A pair of pairs is caught here.
@@ -136,37 +136,37 @@ public class hand {
 			}
 
 			if (h1num > h2num) {
-				return this.getPlayerName() + " wins. - with a two pair";
+				return util.printWinner(this, "a two pair");
 			} else {
-				return other.getPlayerName() + " wins. - with a two pair";
+				return util.printWinner(other, "a two pair");
 			} // todo handle if both pairs are the same value
 		} else if (h1.twoPair) {
-			return this.getPlayerName() + " wins. - with a two pair";
+			return util.printWinner(this, "a two pair");
 		} else if (h2.twoPair) {
-			return other.getPlayerName() + " wins. - with a two pair";
+			return util.printWinner(other, "a two pair");
 		}
 
 		// Single pair. No need to sort it.
 		if (h1.pair && h2.pair) {
 			if (h1.pairNum > h2.pairNum) {
-				return this.getPlayerName() + " wins. - with a pair";
+				return util.printWinner(this, "a pair");
 			} else {
-				return other.getPlayerName() + " wins. - with a two pair";
+				return util.printWinner(other, "a pair");
 			}
 			// todo need to handle if both pairs are the same value
 		} else if (h1.pair) {
-			return this.getPlayerName() + " wins. - with a two pair";
+			return util.printWinner(this, "a pair");
 		} else if (h2.pair) {
-			return other.getPlayerName() + " wins. - with a two pair";
+			return util.printWinner(other, "a pair");
 		}
 
 		// This section is for the high card selection.
 		int len = h1.highNum.length - 1;
 		for (int i = 0; i < h1.highNum.length; i++) {
 			if (h1.highNum[len - i] > h2.highNum[len - i]) {
-				return this.getPlayerName() + " wins. - with high card: " + card.getName(h1.highNum[len - i]);
+				return util.printWinner(this, "high card: " + card.getName(h1.highNum[len - i]));
 			} else if (h1.highNum[len - i] < h2.highNum[len - i]) {
-				return other.getPlayerName() + " wins. - with high card: " + card.getName(h2.highNum[len - i]);
+				return util.printWinner(other, "high card: " + card.getName(h2.highNum[len - i]));
 			}
 		}
 
