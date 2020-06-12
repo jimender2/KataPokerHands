@@ -10,10 +10,14 @@ public class main {
 
 		Scanner scan = new Scanner(System.in);
 
-		hand h1 = new hand(scan.nextLine());
-		hand h2 = new hand(scan.nextLine());
+		String[] str = scan.nextLine().split("  ");
+
+		hand h1 = new hand(str[0]);
+		hand h2 = new hand(str[1]);
 
 		System.out.println(h1.compareTo(h2));
+
+		scan.close();
 
 //		for (int i = 0; i < 100; i++) {
 //			deck deck = new deck();
