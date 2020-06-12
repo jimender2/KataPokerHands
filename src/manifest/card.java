@@ -52,4 +52,30 @@ public class card {
 		return value;
 
 	}
+
+	public static String getName(int value) {
+
+		String str = "";
+
+		switch (value) {
+		case 11:
+			str = "Jack";
+			break;
+		case 12:
+			str = "Queen";
+			break;
+		case 13:
+			str = "King";
+			break;
+		case 14:
+			str = "Ace";
+			break;
+		default:
+			str = value + "";
+			break;
+		}
+
+		return str;
+
+	}
 }
