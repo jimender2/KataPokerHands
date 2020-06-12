@@ -11,6 +11,9 @@ public class main {
 		Scanner scan = new Scanner(System.in);
 
 		hand h1 = new hand(scan.nextLine());
+		hand h2 = new hand(scan.nextLine());
+
+		System.out.println(h1.compareTo(h2));
 	}
 
 }
