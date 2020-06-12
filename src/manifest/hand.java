@@ -79,17 +79,27 @@ public class hand {
 			if (h1.fullHouseNum > h2.fullHouseNum) {
 				return util.printWinner(this, "a full house");
 			} else {
-				return util.printWinner(other, " wins. - whth a full house");
+				return util.printWinner(other, "a full house");
 			}
 		} else if (h1.fullHouse) {
-			return util.printWinner(this, "a full house.");
+			return util.printWinner(this, "a full house");
 		} else if (h2.fullHouse) {
 			return util.printWinner(other, "a full house");
 		}
 
 		// Catches any flushes that there might be.
 		if (h1.flush && h2.flush) {
-			// todo
+			// This section is for the high card selection.
+			for (int i = 0; i < h1.highNum.length; i++) {
+				if (h1.highNum[i] > h2.highNum[i]) {
+					return util.printWinner(this, "high card: " + card.getName(h1.highNum[i]));
+				} else if (h1.highNum[i] < h2.highNum[i]) {
+					return util.printWinner(other, "high card: " + card.getName(h2.highNum[i]));
+				}
+			}
+
+			// If nothing above was triggered, it must be a tie.
+			return "Tie.";
 		} else if (h1.flush) {
 			return util.printWinner(this, "a flush");
 		} else if (h2.flush) {
@@ -132,9 +142,35 @@ public class hand {
 
 			if (h1num > h2num) {
 				return util.printWinner(this, "a two pair");
-			} else {
+			} else if (h1num < h2num) {
 				return util.printWinner(other, "a two pair");
-			} // todo handle if both pairs are the same value
+			} else {
+				int h1numl = util.minNumber(h1.pairNum, h2.twoPairNum);
+
+				int h2numl = util.minNumber(h2.pairNum, h2.twoPairNum);
+
+				if (h1numl > h2numl) {
+					return util.printWinner(this, "a two pair");
+				} else if (h1numl < h2numl) {
+					return util.printWinner(other, "a two pair");
+				} else {
+					// All four pairs must be equal (two pairs of pairs)
+					// so I need to handle
+					// based on the highest number not in the pairs.
+					int[] pair1 = new int[1];
+					int[] pair2 = new int[1];
+					int tracker1 = 0;
+					int tracker2 = 0;
+					for (int i = 0; i < h1.highNum.length; i++) {
+						if (h1.highNum[i] != h1num && h1.highNum[i] != h1numl) {
+							pair1[tracker1] = h1.pairNum;
+						}
+						if (h2.highNum[i] != h1num && h2.highNum[i] != h1numl) {
+							pair2[tracker2] = h2.pairNum;
+						}
+					}
+				}
+			}
 
 		} else if (h1.twoPair) {
 			return util.printWinner(this, "a two pair");
@@ -146,10 +182,25 @@ public class hand {
 		if (h1.pair && h2.pair) {
 			if (h1.pairNum > h2.pairNum) {
 				return util.printWinner(this, "a pair");
-			} else {
+			} else if (h1.pairNum < h2.pairNum) {
 				return util.printWinner(other, "a pair");
+			} else {
+				// Both pairs must be the same number so I need to handle
+				// based on the highest number not in the pairs.
+				int[] pair1 = new int[3];
+				int[] pair2 = new int[3];
+				int tracker1 = 0;
+				int tracker2 = 0;
+				for (int i = 0; i < h1.highNum.length; i++) {
+					if (h1.highNum[i] != h1.pairNum) {
+						pair1[tracker1] = h1.pairNum;
+					}
+					if (h2.highNum[i] != h2.pairNum) {
+						pair2[tracker2] = h2.pairNum;
+					}
+				}
 			}
-			// todo need to handle if both pairs are the same value
+
 		} else if (h1.pair) {
 			return util.printWinner(this, "a pair");
 		} else if (h2.pair) {
