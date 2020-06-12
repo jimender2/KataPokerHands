@@ -72,3 +72,5 @@ Comments from those who are working on this Kata
 
 The 3d rows should result in Black winning, not White since 2H 3D 5S 9C KD is higher than 2C 3H 4S 8C KH
 
+
+The second test case that was given is wrong. It should be black wins with a full house.
