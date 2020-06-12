@@ -28,6 +28,19 @@ public class hand {
 		}
 	}
 
+	public hand(String name, card card1, card card2, card card3, card card4, card card5) {
+
+		this.name = name;
+
+		this.cards = new ArrayList<card>();
+		// Add cards to the hand (an array list for simplicity)
+		this.cards.add(card1);
+		this.cards.add(card2);
+		this.cards.add(card3);
+		this.cards.add(card4);
+		this.cards.add(card5);
+	}
+
 	/**
 	 * getPlayerName
 	 * 

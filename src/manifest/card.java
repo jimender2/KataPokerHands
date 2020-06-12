@@ -11,7 +11,7 @@ public class card {
 	}
 
 	card(String str) {
-		suit = str.charAt(1);
+		suit = str.charAt(str.length() - 1);
 		rank = str.charAt(0);
 	}
 
