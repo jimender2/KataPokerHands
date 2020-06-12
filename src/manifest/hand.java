@@ -163,10 +163,10 @@ public class hand {
 		// This section is for the high card selection.
 		int len = h1.highNum.length - 1;
 		for (int i = 0; i < h1.highNum.length; i++) {
-			if (h1.highNum[len - i] > h2.highNum[len - i]) {
-				return util.printWinner(this, "high card: " + card.getName(h1.highNum[len - i]));
-			} else if (h1.highNum[len - i] < h2.highNum[len - i]) {
-				return util.printWinner(other, "high card: " + card.getName(h2.highNum[len - i]));
+			if (h1.highNum[i] > h2.highNum[i]) {
+				return util.printWinner(this, "high card: " + card.getName(h1.highNum[i]));
+			} else if (h1.highNum[i] < h2.highNum[i]) {
+				return util.printWinner(other, "high card: " + card.getName(h2.highNum[i]));
 			}
 		}
 

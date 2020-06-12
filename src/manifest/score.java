@@ -137,32 +137,9 @@ public class score {
 			straightFlush = true;
 		}
 
-		highNum = bubbleSort(cards);
+		highNum = util.bubbleSort(cards);
+		highNum = util.reverseArray(highNum);
 
-	}
-
-	int[] bubbleSort(ArrayList<card> cards) {
-		int[] a = new int[cards.size()];
-
-		for (int i = 0; i < cards.size(); i++) {
-			a[i] = cards.get(i).getValue();
-		}
-
-		boolean sorted = false;
-		int temp;
-		while (!sorted) {
-			sorted = true;
-			for (int i = 0; i < a.length - 1; i++) {
-				if (a[i] > a[i + 1]) {
-					temp = a[i];
-					a[i] = a[i + 1];
-					a[i + 1] = temp;
-					sorted = false;
-				}
-			}
-		}
-
-		return a;
 	}
 
 }
